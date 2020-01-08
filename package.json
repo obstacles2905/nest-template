@@ -1,0 +1,96 @@
+{
+  "name": "computer-club-backend",
+  "description": "backend part for my computer club",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/someUser/computer-club-backend.git"
+  },
+  "author": {
+    "name": "Nikita",
+    "email": "pismennikita@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/someUser/computer-club-backend/issues"
+  },
+  "engines": {
+    "node": ">=10.16.0 < 11"
+  },
+  "engineStrict": true,
+  "config": {
+    "engine-strict": true
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.development.json",
+    "build:watch": "yarn build -w",
+    "build:typedoc": "typedoc --mode modules --tsconfig tsconfig.base.json --out ./typedoc/",
+    "build:prod": "tsc -p tsconfig.production.json",
+    "format": "tslint -p tsconfig.base.json --fix --exclude \"node_modules/**\" \"**/*.ts\" && cross-env NODE_OPTIONS=\"--max_old_space_size=4096\" prettier --write \"**/*.{ts,js,json,yml,yaml}\"",
+    "lint": "tslint -p tsconfig.base.json -c tslint.json --exclude \"node_modules/**\" \"**/*.ts\"",
+    "clean": "rimraf dist coverage typedoc",
+    "start": "ts-node --project tsconfig.development.json -r dotenv/config src/main.ts dotenv_config_path=development.env",
+    "start:dev": "nodemon",
+    "start:debug": "nodemon --config nodemon-debug.json",
+    "prestart:prod": "rimraf dist && yarn build:prod",
+    "start:prod": "node -r dotenv/config dist/src/main.js dotenv_config_path=development.env",
+    "test": "jest --verbose --runInBand",
+    "test:watch": "yarn test --watch",
+    "test:cov": "yarn test --coverage",
+    "test:debug": "node --inspect node_modules/jest/bin/jest.js --verbose --runInBand --watch",
+    "typeorm": "ts-node --project tsconfig.base.json ./node_modules/typeorm/cli.js --config development.env",
+    "migration:generate": "yarn typeorm migration:generate --name",
+    "migration:create": "yarn typeorm migration:create --name",
+    "migration:run": "yarn typeorm migration:run",
+    "migration:revert": "yarn typeorm migration:revert",
+    "migration:debug": "node --inspect-brk node_modules/ts-node/dist/bin.js --project tsconfig.base.json -r dotenv/config node_modules/typeorm/cli.js migration:run dotenv_config_path=development.env",
+    "remove-dev-dependencies": "ts-node --project tsconfig.base.json ./scripts/remove-dev-dependencies.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "6.2.x",
+    "@nestjs/core": "6.2.x",
+    "@nestjs/platform-express": "6.2.x",
+    "@nestjs/swagger": "3.x.x",
+    "@nestjs/typeorm": "^6.2.0",
+    "@newrelic/native-metrics": "^5.0.0",
+    "@selinarnd/nest-config": "^1.1.1",
+    "@selinarnd/nest-core": "^1.4.4",
+    "@selinarnd/nest-logging": "^1.2.12",
+    "@selinarnd/nest-prom": "^1.1.1",
+    "@selinarnd/node-utils": "^1.5.4",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.11.0",
+    "express": "^4.17.1",
+    "newrelic": "^6.2.0",
+    "pg": "^7.17.0",
+    "prom-client": "^11.5.3",
+    "reflect-metadata": "^0.1.13",
+    "swagger-ui-express": "^4.1.2",
+    "typeorm": "^0.2.22",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "6.2.x",
+    "@types/express": "^4.17.2",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.4",
+    "@types/pg": "^7.14.1",
+    "@types/superagent": "^4.1.4",
+    "@types/supertest": "^2.0.8",
+    "cross-env": "^6.0.3",
+    "dotenv": "^8.2.0",
+    "husky": "^4.0.1",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "shelljs": "^0.8.3",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.3.0",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typedoc": "^0.15.6",
+    "typescript": "^3.7.4"
+  }
+}
