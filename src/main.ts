@@ -18,7 +18,7 @@ async function bootstrap() {
     createSwaggerSite(app);
   }
 
-  const port = normalizePort(configService.get("PORT", { defaulValue: 3000 }));
+  const port = normalizePort(configService.get("PORT", { defaultValue: 3000 }));
   await app.listen(port);
 }
 

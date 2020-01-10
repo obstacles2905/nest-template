@@ -20,10 +20,10 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       password: this.configService.get("TYPEORM_PASSWORD"),
       entities: [TYPEORM_ENTITIES_DIR],
       logging: this.configService.get("TYPEORM_LOGGING", {
-        defaulValue: false,
+        defaultValue: false,
       }),
       synchronize: this.configService.get("TYPEORM_SYNCHRONIZE", {
-        defaulValue: false,
+        defaultValue: false,
       }),
     };
   }
