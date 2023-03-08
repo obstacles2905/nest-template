@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@nestjs/common": "6.2.x",
-    "@nestjs/core": "6.2.x",
+    "@nestjs/core": "9.0.x",
     "@nestjs/passport": "^6.1.1",
     "@nestjs/platform-express": "6.2.x",
     "@nestjs/swagger": "3.x.x",
